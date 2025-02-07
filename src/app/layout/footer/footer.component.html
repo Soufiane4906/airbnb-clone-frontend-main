@@ -1,12 +1,55 @@
-<div class="footer text-sm border-solid border-1 border-200 flex
-justify-content-start align-items-center px-6 py-5">
-  <span>© 2024 Codecake, Inc.</span>
-  <fa-icon icon="circle"></fa-icon>
-  <span>Terms</span>
-  <fa-icon icon="circle"></fa-icon>
-  <span>Sitemap</span>
-  <fa-icon icon="circle"></fa-icon>
-  <span>Privacy</span>
-  <fa-icon icon="circle"></fa-icon>
-  <span>Your privacy choices</span>
-</div>
+<!-- footer.component.html -->
+<footer class="footer-container">
+  <div class="footer-content">
+    <div class="footer-top">
+      <div class="logo-section">
+        <fa-icon [icon]="['fas', 'house']" class="logo-icon"></fa-icon>
+        <span class="logo-text">BlaBlaHouse</span>
+      </div>
+
+      <div class="contact-section">
+        <div class="contact-info">
+          <fa-icon [icon]="['fas', 'envelope']" class="contact-icon"></fa-icon>
+          <a href="mailto:blablahouse@emsi.ma" class="contact-email">
+            blablahouse&#64;emsi.ma
+          </a>
+        </div>
+
+        <div class="social-links">
+          <a *ngFor="let social of socialMediaLinks"
+             [href]="social.link"
+             target="_blank"
+             class="social-icon">
+            <fa-icon [icon]="social.icon"></fa-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-middle">
+      <div class="quick-links">
+        <a *ngFor="let link of quickLinks"
+           [routerLink]="link.link"
+           class="quick-link">
+          {{ link.label }}
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="copyright-section">
+        <span>© 2025 BlaBlaHouse</span>
+        <fa-icon [icon]="['fas', 'heart']" class="heart-icon"></fa-icon>
+        <span>Made With Love By Wiam && Aya </span>
+      </div>
+
+      <div class="legal-links">
+        <a href="#" class="legal-link">Terms</a>
+        <fa-icon icon="circle" class="separator"></fa-icon>
+        <a href="#" class="legal-link">Privacy</a>
+        <fa-icon icon="circle" class="separator"></fa-icon>
+        <a href="#" class="legal-link">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>

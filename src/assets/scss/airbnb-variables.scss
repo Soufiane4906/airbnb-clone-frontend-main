@@ -1,24 +1,24 @@
 // ------------- Custom Color variables ------------ //
-$dark: #222;
-$black: #000;
-$white: #fff;
-$border-color: #DDD;
-$secondaryBg: #222;
-$secondaryBorderColor: #B0B0B0;
-$footerBgColor: #F7F7F7;
+$dark: #1A1A2E;
+$black: #16213E;
+$white: #FFFFFF;
+$border-color: #E5E5E5;
+$secondaryBg: #0F3460;
+$secondaryBorderColor: #94A3B8;
+$footerBgColor: #F8FAFC;
 
 // ------------- PrimeNG Variables ------------ //
-$primaryColor: #F24B5B;
-$primaryDarkColor: #F04B5F;
-$primaryDarkerColor: #F04B5F;
-$primaryLightColor: #717171;
+$primaryColor: #6366F1;  // Indigo
+$primaryDarkColor: #4338CA;
+$primaryDarkerColor: #3730A3;
+$primaryLightColor: #818CF8;
 
 $highlightTextColor: $primaryDarkerColor;
 $highlightFocusBg: rgba($primaryColor, .24);
 
 $borderRadius: 6px !default;
 
-$textColor: #5B5B5B;
+$textColor: #475569;
 $fontFamily: "Airbnb Cereal", sans-serif;
 $fontSize: 1rem;
 
@@ -27,21 +27,21 @@ $dialogBorderRadius: 12px;
 $linkButtonColor: $dark !default;
 $linkButtonHoverColor: $black;
 $linkButtonTextHoverDecoration: underline;
-$focusOutlineColor: $black;
+$focusOutlineColor: $primaryColor;
 $linkButtonFocusShadow: 0 0 0 0.2rem $focusOutlineColor;
 
 $secondaryButtonBg: $secondaryBg !default;
 $secondaryButtonTextColor: $white !default;
 $secondaryButtonBorder: 1px solid $secondaryBorderColor !default;
-$secondaryButtonHoverBg: $black !default;
+$secondaryButtonHoverBg: $primaryDarkColor !default;
 $secondaryButtonTextHoverColor: $secondaryButtonTextColor !default;
-$secondaryButtonHoverBorderColor: $black !default;
-$secondaryButtonActiveBg: $black !default;
+$secondaryButtonHoverBorderColor: $primaryDarkColor !default;
+$secondaryButtonActiveBg: $primaryDarkerColor !default;
 $secondaryButtonTextActiveColor: $secondaryButtonTextColor !default;
-$secondaryButtonActiveBorderColor: $black !default;
-$secondaryButtonFocusShadow: 0 0 0 0.2rem #e2e8f0 !default;
+$secondaryButtonActiveBorderColor: $primaryDarkerColor !default;
+$secondaryButtonFocusShadow: 0 0 0 0.2rem rgba($primaryColor, 0.3) !default;
 $outlinedButtonBorder: 1px solid $secondaryBorderColor;
 
-$inputBorder: 1px solid #D1D5DC;
-$inputHoverBorderColor: $secondaryBorderColor;
-$inputFocusBorderColor: $secondaryBorderColor;
+$inputBorder: 1px solid #CBD5E1;
+$inputHoverBorderColor: $primaryColor;
+$inputFocusBorderColor: $primaryColor;
