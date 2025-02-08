@@ -17,11 +17,11 @@ import {NgForOf} from "@angular/common";
 })
 export class FooterComponent {
   socialMediaLinks = [
-    { icon: ['fab', 'facebook'], link: 'https://facebook.com/blablahouse' },
-    { icon: ['fab', 'twitter'], link: 'https://twitter.com/blablahouse' },
-    { icon: ['fab', 'instagram'], link: 'https://instagram.com/blablahouse' },
-    { icon: ['fab', 'linkedin'], link: 'https://linkedin.com/company/blablahouse' },
-    { icon: ['fab', 'tiktok'], link: 'https://tiktok.com/@blablahouse' }
+    { icon: ['fab', 'facebook'], link: 'https://facebook.com/Riadi ' },
+    { icon: ['fab', 'twitter'], link: 'https://twitter.com/Riadi ' },
+    { icon: ['fab', 'instagram'], link: 'https://instagram.com/Riadi ' },
+    { icon: ['fab', 'linkedin'], link: 'https://linkedin.com/company/Riadi ' },
+    { icon: ['fab', 'tiktok'], link: 'https://tiktok.com/@Riadi ' }
   ];
 
   quickLinks = [
