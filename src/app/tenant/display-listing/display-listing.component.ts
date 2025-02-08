@@ -1,16 +1,16 @@
-import {Component, effect, inject, OnDestroy, OnInit} from '@angular/core';
-import {TenantListingService} from "../tenant-listing.service";
-import {ActivatedRoute} from "@angular/router";
-import {ToastService} from "../../layout/toast.service";
-import {CategoryService} from "../../layout/navbar/category/category.service";
-import {CountryService} from "../../landlord/properties-create/step/location-step/country.service";
-import {DisplayPicture, Listing} from "../../landlord/model/listing.model";
-import {Category} from "../../layout/navbar/category/category.model";
-import {map} from "rxjs";
-import {NgClass} from "@angular/common";
-import {FaIconComponent} from "@fortawesome/angular-fontawesome";
-import {AvatarComponent} from "../../layout/navbar/avatar/avatar.component";
-import {BookDateComponent} from "../book-date/book-date.component";
+import { Component, effect, inject, OnDestroy, OnInit } from '@angular/core';
+import { TenantListingService } from "../tenant-listing.service";
+import { ActivatedRoute } from "@angular/router";
+import { ToastService } from "../../layout/toast.service";
+import { CategoryService } from "../../layout/navbar/category/category.service";
+import { CountryService } from "../../landlord/properties-create/step/location-step/country.service";
+import { DisplayPicture, Listing } from "../../landlord/model/listing.model";
+import { Category } from "../../layout/navbar/category/category.model";
+import { map } from "rxjs";
+import {NgClass, NgForOf, NgStyle} from "@angular/common";
+import { FaIconComponent } from "@fortawesome/angular-fontawesome";
+import { AvatarComponent } from "../../layout/navbar/avatar/avatar.component";
+import { BookDateComponent } from "../book-date/book-date.component";
 
 @Component({
   selector: 'app-display-listing',
@@ -19,7 +19,9 @@ import {BookDateComponent} from "../book-date/book-date.component";
     NgClass,
     FaIconComponent,
     AvatarComponent,
-    BookDateComponent
+    BookDateComponent,
+    NgStyle,
+    NgForOf
   ],
   templateUrl: './display-listing.component.html',
   styleUrl: './display-listing.component.scss'
@@ -37,7 +39,7 @@ export class DisplayListingComponent implements OnInit, OnDestroy {
   currentPublicId = "";
 
   loading = true;
-
+  activeSlideIndex = 0;
 
   constructor() {
     this.listenToFetchListing();
@@ -100,5 +102,17 @@ export class DisplayListingComponent implements OnInit, OnDestroy {
       pictures.unshift(cover);
     }
     return pictures;
+  }
+
+  nextSlide() {
+    if (this.listing && this.listing.pictures.length > 0) {
+      this.activeSlideIndex = (this.activeSlideIndex + 1) % this.listing.pictures.length;
+    }
+  }
+
+  prevSlide() {
+    if (this.listing && this.listing.pictures.length > 0) {
+      this.activeSlideIndex = (this.activeSlideIndex - 1 + this.listing.pictures.length) % this.listing.pictures.length;
+    }
   }
 }

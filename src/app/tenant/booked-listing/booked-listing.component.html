@@ -1,11 +1,49 @@
+<!-- booked-listing.component.html -->
 <h1>My Booking</h1>
 <h2>Past and Next booking</h2>
 <div class="listing-grid">
   @for (bookedListing of bookedListings; track bookedListing.bookingPublicId) {
     <app-card-listing [listing]="bookedListing" [cardMode]="'booking'"
                       (cancelBooking)="onCancelBooking($event)"></app-card-listing>
+    <div>
+      <p>Payment Status: {{ bookedListing.paymentStatus }}</p>
+      <button (click)="onPay(bookedListing)" [disabled]="paymentProcessing">
+        Proceed to Pay
+      </button>
+      @if (bookedListing.paymentStatus === 'PENDING') {
+        <button (click)="onPay(bookedListing)" [disabled]="paymentProcessing">
+          Proceed to Pay
+        </button>
+      }
+    </div>
   }
 </div>
+
+@if (showPaymentForm && selectedBooking) {
+  <div class="payment-form-overlay">
+    <div class="payment-form">
+      <h3>Payment for Booking: {{ selectedBooking.bookingPublicId }}</h3>
+      <p>Total Amount: {{ selectedBooking.totalPrice.value | currency }}</p>
+
+      <div id="card-element" class="card-element"></div>
+
+      <div class="payment-buttons">
+        <button
+          (click)="submitPayment()"
+          [disabled]="paymentProcessing"
+          class="submit-button">
+          {{ paymentProcessing ? 'Processing...' : 'Submit Payment' }}
+        </button>
+        <button
+          (click)="showPaymentForm = false"
+          [disabled]="paymentProcessing"
+          class="cancel-button">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+}
 
 @if (!loading && bookedListings.length === 0) {
   <div class="flex flex-column align-items-center justify-content-center h-10rem">

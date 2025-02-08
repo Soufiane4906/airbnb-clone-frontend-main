@@ -1,13 +1,17 @@
 @if (listing && !loading) {
-  <h1>{{ listing.description.title.value }}</h1>
+  <h1 class="text-3xl font-bold mb-4">{{ listing.description.title.value }}</h1>
   <div class="gallery">
-    @for (picture of listing.pictures; track picture.file; let index = $index) {
-      <div class="border-1 border-transparent bg-cover bg-center bg-no-repeat h-full w-full"
-           [class.cover]="picture.isCover"
-           [ngClass]="'gallery-picture-'+ (index + 1)"
-           [style.background-image]="'url(' + 'data:' + picture.fileContentType + ';base64,' + picture.file + ')'">
+    <div class="slider" [ngStyle]="{'transform': 'translateX(-' + activeSlideIndex * 100 + '%)'}">
+      <div *ngFor="let picture of listing?.pictures; let i = index"
+           class="slide"
+           [style.background-image]="'url(data:' + picture.fileContentType + ';base64,' + picture.file + ')'">
       </div>
-    }
+    </div>
+
+    <div class="slider-controls">
+      <button (click)="prevSlide()" class="slider-button">&#10094;</button>
+      <button (click)="nextSlide()" class="slider-button">&#10095;</button>
+    </div>
   </div>
   <div class="flex justify-content-between mt-4">
     <div id="content" class="flex-grow-1 mr-7">

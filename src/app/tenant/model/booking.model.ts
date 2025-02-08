@@ -14,6 +14,8 @@ export interface BookedListing {
   dates: BookedDatesDTOFromServer,
   bookingPublicId: string,
   listingPublicId: string,
+  paymentStatus: string, // Add this field
+
   loading: boolean
 }
 

@@ -5,6 +5,7 @@ import {BookedDatesDTOFromClient, BookedDatesDTOFromServer, BookedListing, Creat
 import {environment} from "../../../environments/environment";
 import {map} from "rxjs";
 import dayjs from "dayjs";
+import {PriceVO} from "../../landlord/model/listing-vo.model";
 
 @Injectable({
   providedIn: 'root'
@@ -64,6 +65,23 @@ export class BookingService {
     }
   }
 
+  createPaymentIntent(bookingId: string, amount: PriceVO) {
+    console.log("Booking ID:", bookingId, "Amount:", amount.value);  // Debug
+
+    const params = new HttpParams()
+      .set('bookingPublicId', bookingId)
+      .set('amount', amount.value.toString());
+
+    return this.http.post<string>(`${environment.API_URL}/booking/create-payment-intent`, null, { params });
+  }
+
+  updatePaymentStatus(bookingId: string, status: string) {
+    const params = new HttpParams()
+      .set('bookingId', bookingId)
+      .set('status', status);
+
+    return this.http.post<boolean>(`${environment.API_URL}/booking/update-payment-status`, null, { params });
+  }
   private convertDateToDayJS<T extends BookedDatesDTOFromServer>(dto: T): BookedDatesDTOFromClient {
     return {
       ...dto,
