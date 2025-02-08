@@ -1,5 +1,31 @@
 @import "./../../../../assets/scss/airbnb-variables";
 
+@keyframes categoryPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+}
+
+@keyframes categorySlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .categories {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -9,12 +35,48 @@
   overflow-x: scroll;
   gap: 30px;
   background-color: $white;
+  padding: 10px 0;
+  transition: all 0.3s ease-in-out;
+
+  // Hide scrollbar for Chrome, Safari and Opera
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   .category {
     cursor: pointer;
     border-bottom: 2px transparent solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 10px;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+
+    // Magic hover effect
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: $primaryColor;
+      transition: width 0.3s ease-in-out;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
 
     fa-icon {
       font-size: 1.4rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+
+      &:hover {
+        color: $primaryColor;
+        transform: scale(1.1) rotate(5deg);
+      }
     }
 
     .name {
@@ -22,27 +84,54 @@
       font-size: 0.8rem;
       white-space: nowrap;
       letter-spacing: 0.25px;
+      transition: all 0.3s ease;
+      position: relative;
+
+      // Magical text reveal
+      &::before {
+        display: block;
+        content: attr(title);
+        font-weight: bold;
+        height: 0;
+        overflow: hidden;
+        visibility: hidden;
+      }
     }
 
-    .name::before {
-      display: block;
-      content: attr(title);
-      font-weight: bold;
-      height: 0;
-      overflow: hidden;
-      visibility: hidden;
+    // Magic hover and active states
+    &:hover, &.category-activated {
+      animation: categoryPulse 1s infinite;
+
+      .name {
+        font-weight: bold;
+        color: $primaryColor;
+        transform: translateY(-2px);
+      }
     }
   }
 
   .category-activated {
-    border-bottom: 2px $dark solid;
+    border-bottom: 2px $primaryColor solid;
     font-weight: bold;
+
+    // Magical activation glow
+    box-shadow: 0 4px 6px rgba($primaryColor, 0.2);
+
+    fa-icon {
+      color: $primaryColor;
+      transform: scale(1.1);
+    }
   }
 
-  .category:hover {
-    .name {
-      font-weight: bold;
+  // Staggered animation for categories
+  .category {
+    animation: categorySlideIn 0.5s ease;
+    animation-fill-mode: backwards;
+
+    @for $i from 1 through 10 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{$i * 0.1}s;
+      }
     }
-    border-bottom: 2px $border-color solid;
   }
 }

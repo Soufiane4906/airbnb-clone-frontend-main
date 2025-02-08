@@ -38,20 +38,26 @@
       </div>
     </p-toolbar>
 
-    <!-- City Slider Section -->
-    <div class="city-slider-container">
-      <p-carousel [value]="cities" [responsiveOptions]="responsiveOptions" [numVisible]="4" [numScroll]="1">
-        <ng-template let-city pTemplate="item">
-          <div class="city-card" (click)="selectCity(city)">
-            <img [src]="city.image" class="city-image" alt="{{city.name}}"/>
-            <div class="city-details">
-              <h3 class="city-name">{{city.name}}</h3>
-              <p class="city-description">{{city.description}}</p>
+    <!-- City Slider Section - Only on Home Page -->
+    @if(router.url === '/') {
+      <div class="city-slider-container">
+        <p-carousel
+          [value]="cities"
+          [responsiveOptions]="responsiveOptions"
+          [numVisible]="4"
+          [numScroll]="1"
+        >
+          <ng-template let-city pTemplate="item">
+            <div class="city-card" (click)="selectCity(city)">
+              <img [src]="city.image" class="city-image" alt="{{city.name}}"/>
+              <div class="city-details">
+                <h3 class="city-name">{{city.name}}</h3>
+                <p class="city-description">{{city.description}}</p>
+              </div>
             </div>
-          </div>
-        </ng-template>
-      </p-carousel>
-    </div>
+          </ng-template>
+        </p-carousel>
+      </div>
+    }
   </div>
-
 </div>

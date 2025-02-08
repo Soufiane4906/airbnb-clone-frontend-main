@@ -1,7 +1,7 @@
 // navbar.component.ts
 import { Component, effect, inject, OnInit } from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
-import { RouterModule } from '@angular/router';
+import {Router, RouterModule} from '@angular/router';
 import { ButtonModule } from "primeng/button";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { ToolbarModule } from "primeng/toolbar";
@@ -38,7 +38,6 @@ interface City {
     CarouselModule,
     CategoryComponent,
     AvatarComponent,
-    NgOptimizedImage
   ],
   providers: [DialogService],
   templateUrl: './navbar.component.html',
@@ -65,7 +64,7 @@ export class NavbarComponent implements OnInit {
   connectedUser: User = {email: this.authService.notConnected};
 
 
-  constructor() {
+  constructor(public router: Router) {
     effect(() => {
       if (this.authService.fetchUser().status === "OK") {
         this.connectedUser = this.authService.fetchUser().value!;

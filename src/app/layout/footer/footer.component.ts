@@ -2,13 +2,15 @@
 import { Component } from '@angular/core';
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { RouterModule } from '@angular/router';
+import {NgForOf} from "@angular/common";
 
 @Component({
   selector: 'app-footer',
   standalone: true,
   imports: [
     FontAwesomeModule,
-    RouterModule
+    RouterModule,
+    NgForOf
   ],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss'
